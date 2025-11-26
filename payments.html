@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payments - Revanths Mobiles</title>
+
+<style>
+body { background:#eee; margin:0; font-family:Arial; }
+header { background:#111; color:white; text-align:center; padding:20px; }
+.box { max-width:400px; background:white; padding:20px; margin:40px auto;
+       border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+select { width:100%; padding:10px; margin:10px 0; }
+.btn { background:#007bff; color:white; padding:12px; border:none; width:100%;
+       border-radius:6px; cursor:pointer; }
+</style>
+
+<script>
+function placeOrder(){
+    localStorage.setItem("cart", "[]");
+    window.location.href = "thankyou.html";
+}
+</script>
+
+</head>
+<body>
+
+<header><h1>Payment & Delivery</h1></header>
+
+<div class="box">
+    <h3>Delivery Location</h3>
+    <select>
+        <option>Hyderabad</option>
+        <option>Vijayawada</option>
+        <option>Chennai</option>
+        <option>Bangalore</option>
+    </select>
+
+    <h3>Payment Method</h3>
+    <select>
+        <option>Cash On Delivery</option>
+        <option>UPI</option>
+        <option>Net Banking</option>
+        <option>Credit Card</option>
+    </select>
+
+    <button class="btn" onclick="placeOrder()">Place Order</button>
+</div>
+
+</body>
+</html>
