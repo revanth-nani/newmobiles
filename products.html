@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Products - Revanths Mobiles</title>
+
+<style>
+body { margin:0; font-family:Arial; background:#eee; }
+header { background:#111; color:white; padding:20px; text-align:center; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;
+        padding:20px; }
+.card { background:white; padding:15px; border-radius:8px; text-align:center;
+        box-shadow:0 2px 6px rgba(0,0,0,.2); }
+.card img { width:100%; height:240px; object-fit:cover; border-radius:6px; }
+.btn { background:#007bff; padding:10px 20px; color:white; border:none; cursor:pointer;
+       border-radius:6px; margin-top:10px; }
+footer { background:#000; color:white; padding:15px; text-align:center; margin-top:40px; }
+.cart-link { text-align:center; margin:20px; }
+</style>
+
+<script>
+// PRODUCT DATA
+const products = [
+ {id:1, name:"iPhone 14", price:69999,
+ img:"https://images.unsplash.com/photo-1661956600466-57bb84c1a324?auto=format&fit=crop&w=800&q=80"},
+ {id:2, name:"Samsung S23", price:58999,
+ img:"https://images.unsplash.com/photo-1610945415295-d9f6bb88870a?auto=format&fit=crop&w=800&q=80"},
+ {id:3, name:"OnePlus 11", price:49999,
+ img:"https://images.unsplash.com/photo-1616348436168-de43ad642a55?auto=format&fit=crop&w=800&q=80"},
+ {id:4, name:"Redmi Note 13", price:16999,
+ img:"https://images.unsplash.com/photo-1585060544812-6b45742a3a80?auto=format&fit=crop&w=800&q=80"}
+];
+
+function addToCart(id){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let item = products.find(p => p.id === id);
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Item added to cart!");
+}
+</script>
+
+</head>
+<body>
+
+<header><h1>Our Products</h1></header>
+
+<div class="grid">
+<script>
+products.forEach(p=>{
+    document.write(`
+    <div class="card">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p>₹${p.price}</p>
+        <button class="btn" onclick="addToCart(${p.id})">Add to Cart</button>
+    </div>
+    `)
+})
+</script>
+</div>
+
+<div class="cart-link">
+    <a href="cart.html" class="btn">Go To Cart</a>
+</div>
+
+<footer>© 2025 Revanth Mobiles</footer>
+
+</body>
+</html>
