@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart - Revanths Mobiles</title>
+
+<style>
+body { font-family:Arial; background:#f5f5f5; margin:0; }
+header { background:#111; color:white; text-align:center; padding:20px; }
+.item { background:white; margin:15px; padding:15px; display:flex; justify-content:space-between;
+        border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,.2); }
+.item img { width:120px; border-radius:6px; }
+.btn { background:#ff3b3b; color:white; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; }
+.pay-btn { background:#007bff; }
+.total { margin:20px; font-size:22px; font-weight:bold; }
+</style>
+
+<script>
+function loadCart(){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let area = document.getElementById("items");
+    let total = 0;
+    area.innerHTML = "";
+
+    cart.forEach((p,i)=>{
+        total += p.price;
+        area.innerHTML += `
+        <div class="item">
+            <img src="${p.img}">
+            <h3>${p.name}<br>₹${p.price}</h3>
+            <button class="btn" onclick="removeItem(${i})">Remove</button>
+        </div>
+        `;
+    });
+
+    document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function removeItem(i){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    cart.splice(i,1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+}
+
+</script>
+
+</head>
+<body onload="loadCart()">
+
+<header><h1>Your Cart</h1></header>
+
+<div id="items"></div>
+
+<div class="total" id="total"></div>
+
+<div style="text-align:center;">
+    <a href="payments.html" class="btn pay-btn">Proceed To Payment</a>
+</div>
+
+</body>
+</html>
